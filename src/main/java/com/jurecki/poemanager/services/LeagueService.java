@@ -13,5 +13,11 @@ public interface LeagueService {
 
     League save(League newLeague);
 
+    List<League> saveAll(List<League> leagueList);
+
     void delete(League league);
+
+    League getLeague(String leagueName);
+
+   // List<League> getAllLeagues();
 }

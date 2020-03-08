@@ -1,16 +1,12 @@
 package com.jurecki.poemanager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Getter
-@Setter
 @Entity
 public class League {
 
@@ -21,29 +17,99 @@ public class League {
     private String registerAt;
     private String url;
     private String startAt;
-    private String endAt;
+    private String endAt = null;
     private Boolean delveEvent;
-    private String[] rules;
+
+    private ArrayList<Rule> rules = new ArrayList<>();
 
     public League() {
     }
 
-    public String getId() {
-        return id;
-    }
 
     @Override
     public String toString() {
-        return "Value{" +
+        return "League{" +
                 "id='" + id + '\'' +
                 ", realm='" + realm + '\'' +
                 ", description='" + description + '\'' +
                 ", registerAt='" + registerAt + '\'' +
                 ", url='" + url + '\'' +
                 ", startAt='" + startAt + '\'' +
-                ", endAt=" + endAt +
+                ", endAt='" + endAt + '\'' +
                 ", delveEvent=" + delveEvent +
-                ", rules=" + Arrays.toString(rules) +
+                ", rules=" + rules +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getRealm() {
+        return realm;
+    }
+
+    public void setRealm(String realm) {
+        this.realm = realm;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getRegisterAt() {
+        return registerAt;
+    }
+
+    public void setRegisterAt(String registerAt) {
+        this.registerAt = registerAt;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getStartAt() {
+        return startAt;
+    }
+
+    public void setStartAt(String startAt) {
+        this.startAt = startAt;
+    }
+
+    public String getEndAt() {
+        return endAt;
+    }
+
+    public void setEndAt(String endAt) {
+        this.endAt = endAt;
+    }
+
+    public Boolean getDelveEvent() {
+        return delveEvent;
+    }
+
+    public void setDelveEvent(Boolean delveEvent) {
+        this.delveEvent = delveEvent;
+    }
+
+    public ArrayList<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(ArrayList<Rule> rules) {
+        this.rules = rules;
     }
 }

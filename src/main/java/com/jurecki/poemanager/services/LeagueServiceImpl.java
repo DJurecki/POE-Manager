@@ -3,6 +3,7 @@ package com.jurecki.poemanager.services;
 import com.jurecki.poemanager.domain.League;
 import com.jurecki.poemanager.repositories.LeagueRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,32 @@ public class LeagueServiceImpl implements LeagueService {
     }
 
     @Override
+    public List<League> saveAll(List<League> leagueList) {
+        return (List<League>) leagueRepository.saveAll(leagueList);
+    }
+
+    @Override
     public void delete(League league) {
         leagueRepository.delete(league);
     }
+
+    @Override
+    public League getLeague(String leagueName) {
+        final League responseBody = new RestTemplate().getForObject("http://api.pathofexile.com/leagues/" + leagueName,
+                League.class);
+        League savedLeague = this.save(responseBody);
+        System.out.println(savedLeague);
+        return responseBody;
+    }
+
+    /*@Override
+    public List<League> getAllLeagues() {
+        final List<League> responseBody = new RestTemplate().getForObject("http://api.pathofexile.com/leagues?realm=pc",
+                League.class);
+        List<League> leagueList = this.saveAll(responseBody);
+        for(League league : leagueList){
+            System.out.println(league);
+        }
+        return responseBody;
+    }*/
 }
