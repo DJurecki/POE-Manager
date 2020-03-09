@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +21,7 @@ public class League {
     private String endAt = null;
     private Boolean delveEvent;
 
+    @Lob
     private ArrayList<Rule> rules = new ArrayList<>();
 
     public League() {

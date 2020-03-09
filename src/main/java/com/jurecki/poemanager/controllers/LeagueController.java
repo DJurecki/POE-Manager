@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class LeagueController {
 
@@ -18,5 +20,10 @@ public class LeagueController {
     @GetMapping("/{leagueName}")
     public League getLeague(@PathVariable String leagueName) {
         return leagueService.getLeague(leagueName);
+    }
+
+    @GetMapping("/leagues")
+    public List<League> getAllLeagues(){
+        return leagueService.getAllLeagues();
     }
 }

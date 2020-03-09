@@ -2,6 +2,9 @@ package com.jurecki.poemanager.services;
 
 import com.jurecki.poemanager.domain.League;
 import com.jurecki.poemanager.repositories.LeagueRepository;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -54,14 +57,14 @@ public class LeagueServiceImpl implements LeagueService {
         return responseBody;
     }
 
-    /*@Override
+    @Override
     public List<League> getAllLeagues() {
-        final List<League> responseBody = new RestTemplate().getForObject("http://api.pathofexile.com/leagues?realm=pc",
-                League.class);
-        List<League> leagueList = this.saveAll(responseBody);
-        for(League league : leagueList){
-            System.out.println(league);
-        }
-        return responseBody;
-    }*/
+
+        String URL = "http://api.pathofexile.com/leagues?realm=pc";
+        ParameterizedTypeReference<List<League>> responseType = new ParameterizedTypeReference<>() {
+        };
+        ResponseEntity<List<League>> resp = new RestTemplate().exchange(URL, HttpMethod.GET, null, responseType);
+        List<League> list = resp.getBody();
+        return this.saveAll(list);
+    }
 }

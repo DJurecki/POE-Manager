@@ -19,5 +19,5 @@ public interface LeagueService {
 
     League getLeague(String leagueName);
 
-   // List<League> getAllLeagues();
+    List<League> getAllLeagues();
 }
